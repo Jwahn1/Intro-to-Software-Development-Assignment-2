@@ -25,7 +25,28 @@ class UserTest {
   }
 
   @Test
+  /*
+   tests the Find() function, tests whether the function returns the two specified values return
+   values (null,wanted User object)
+   */
   void testFind() {
+    User testClient = new User(friendNames[0]);
+    User b = new User(friendNames[1]);
+
+    //use Find() function
+    User returnedUser = User.find(testClient.name);
+
+    //when given a name for a user that has been inputted into the hashmap, it should return a User object, not null
+    //User.find("string").name looks into the user hashmap and uses the "string" as the key
+
+    assert returnedUser != null: "returned user object is null when User is in the hashmap";
+    assert returnedUser.name.equals(testClient.name): "returnedUser object name doesn't match original inputted name";
+
+    //when given a name for a user that isn't in the hash map, it should return a null User object
+
+    returnedUser = User.find(friendNames[2]);
+
+    assert returnedUser == null: "returned user object is not null when User isn't in the hashmap";
   }
 
   @Test
