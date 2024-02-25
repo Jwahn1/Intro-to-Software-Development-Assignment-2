@@ -31,19 +31,22 @@ class FriendRecommenderTest {
   }
 
   /*
-   Test checks whether Returned arraylist is empty and whether the returned message is the expected one as specified in
-   function description
+   Test checks whether the returned array list contains the expected recommendation messages for 2 friends
+   (u friends > f friends > (g and h))
    */
   @Test
   void testMakeRecommendations() {
+    //the final message should be "A and B should be friends"
     User u = new User("A");
     User f = new User(friendNames[1]);
     User g = new User("B");
+    User h = new User("C");
 
-    //the final message should be "A and B should be friends"
     f.friend(g.name);
+    f.friend(h.name);
+
     u.friend(f.name);
-    
+
     FriendRecommender fr = new FriendRecommender();
     ArrayList<String> recommended = new ArrayList<String>();
 
@@ -55,6 +58,10 @@ class FriendRecommenderTest {
     //checks whether the returned message is as expected
     assertEquals(recommended.get(0),"A and B should be friends","" +
     "The function does not return a message recommending the friends for A");
+
+    assertEquals(recommended.get(1),"A and C should be friends","" +
+    "The function does not return a message recommending the friends for A");
+
 
 
 
