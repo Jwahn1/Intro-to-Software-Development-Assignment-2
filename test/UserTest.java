@@ -50,17 +50,39 @@ class UserTest {
 
 
 
-  /*test checks whether the Friend() function correctly returns the friended user, whether both user's adj hashmaps
-  have each user added and whether friending a user that is already a friend doesn't change the status of each user's
-  hash map
+  /*test checks whether the Friend() function correctly returns the friended user and whether both user's adj hashmaps
+  have each user added
    */
-  //note:the function description doesn't say anything about what happens when you input a string for a user
-  //that doesn't exist, so I can't test it with black box method?
   @Test
-  void testFriend() {
+  void testFriendOnce() {
     User client = new User(friendNames[0]);
     User newFriend = new User(friendNames[1]);
 
+    User returnedUser = client.friend(newFriend.name);
+
+    //checks whether returnedUser is the same object as the inputted newFriend
+    assertEquals(newFriend,returnedUser,"the returnedUser was not the inputted user");
+
+    //checks whether client and the object added as newFriend's friend are both equal
+    assertEquals(client.adj.get(newFriend.name),newFriend,"" +
+    "newFriend and the User object added to adj as client's friend are not equal");
+
+    //checks whether client and the object added as newFriend's friend are both equal
+    assertEquals(newFriend.adj.get(client.name),client,"" +
+    "client and the User object added to adj as newFriend's friend are not equal ");
+
+
+
+  }
+  //test checks whether friending a user twice returns the same values as being friended once since the status
+  //between both users shouldn't change
+  @Test
+  void testFriendTwice() {
+    User client = new User(friendNames[0]);
+    User newFriend = new User(friendNames[1]);
+
+    //friends twice
+    client.friend(newFriend.name);
     User returnedUser = client.friend(newFriend.name);
 
     //checks whether returnedUser is the same object as the inputted newFriend
@@ -75,23 +97,9 @@ class UserTest {
     assertEquals(newFriend.adj.get(client.name),client,"" +
     "client and the User object added to adj as newFriend's friend are not equal ");
 
-    //friending a user again shouldn't change their status
-
-    returnedUser = client.friend(newFriend.name);
-
-    //checks whether returnedUser is the same object as the inputted newFriend
-    assertEquals(newFriend,returnedUser,"the returnedUser was not the inputted user");
-
-    //checks whether client and the object added as newFriend's friend are both equal
-    assertEquals(client.adj.get(newFriend.name),newFriend,"" +
-    "newFriend and the User object added to adj as client's friend are not equal");
-
-
-    //checks whether client and the object added as newFriend's friend are both equal
-    assertEquals(newFriend.adj.get(client.name),client,"" +
-    "client and the User object added to adj as newFriend's friend are not equal ");
-
   }
+
+
   /*
   tests whether unfriend() function returns the correct user Object and whether both the client and the newFriend
   objects are removed from each others adj friend lists
