@@ -117,13 +117,49 @@ class UserTest {
     "client is still in the newFriend's adj friend list");
   }
 
+  /*
+  tests whether the request User object is removed from both the user static hashmap and every other users adj friend list
+   */
   @Test
   void testLeave() {
-    
+    User client = new User(friendNames[0]);
+    User newFriend = new User(friendNames[1]);
+    //store name of removed user for testing
+    String removed = newFriend.name;
+
+    client.friend(newFriend.name);
+
+    //remove newFriend from social network
+    User returnedUser = User.find(removed);
+
+    //if removed, newFriend should be unfindable and should return null
+    assertNull(returnedUser,"newFriend was not removed from the static hashmap");
+
+    //newFriend should also not be in client's adj friend list
+    returnedUser = client.adj.get(removed);
+    assertNotEquals(returnedUser.name,removed,"newFriend is still in client's friend list after being removed");
+
   }
 
+  /*
+  test checks whether isFriend() returns true when both  users are friends and if it returns false when
+  they are not friends
+   */
   @Test
   void testIsFriend() {
+    User client = new User(friendNames[0]);
+    User newFriend = new User(friendNames[1]);
+
+    client.friend(newFriend.name);
+
+    //checks when newFriend is  in friendslist
+    assert (client.isFriend(newFriend)) : "function doesn't return true when both users are friends";
+
+    //remove newFriend from friends list
+    User returnedUser = client.unfriend(newFriend.name);
+
+    //checks when newFriend is not in friendslist
+    assert !(client.isFriend(newFriend)) : "function doesn't return false when both users aren't friends";
   }
 
   // add more tests as needed using white-box, black-box or a mix of testing strategies
