@@ -8,33 +8,39 @@ Error 1:
   Message: Wrong recommendation count
 
 Error 2:
-  Class:
-  Method:
-  Test Method:
-  Message:
+  Class: UserTest
+  Method:Find()
+  Test Method:TestFind()
+  Message: returnedUser is null when it should return a user Object
 
 Error 3:
-  Class:
-  Method:
-  Test Method:
-  Message:
+  Class:UserTest
+  Method: Unfriend()
+  Test Method: testUnFriend()
+  Message:client is still in the newFriend's adj friend list
 
 Error 4:
-  Class:
-  Method:
-  Test Method:
-  Message:
+  Class:UserTest
+  Method: leave()
+  Test Method: testLeave()
+  Message: newFriend is still in client's friend list after being removed
 
 Error 5:
-  Class:
-  Method:
-  Test Method:
-  Message:
+  Class:UserTest
+  Method:isFriend()
+  Test Method: testIsFriend()
+  Message: function doesn't return true when both users are friends	
 
 Error 6:
-  Class:
-  Method:
-  Test Method:
-  Message:
+  Class:UserTest
+  Method:isFriend()
+  Test Method: testIsFriend()
+  Message: function doesn't return false when both users aren't friends
+
+Error 7:
+  Class: FriendRecommender
+  Method: makeRecommendations()
+  Test Method: testMakeRecommendations()
+  Message:  the function returns no message
 
 *********** ADD AS MANY MORE AS NEEDED *******************
