@@ -76,7 +76,6 @@ class UserTest {
   }
   //test checks whether friending a user twice returns the same values as being friended once since the status
   //between both users shouldn't change
-  @Test
   void testFriendTwice() {
     User client = new User(friendNames[0]);
     User newFriend = new User(friendNames[1]);

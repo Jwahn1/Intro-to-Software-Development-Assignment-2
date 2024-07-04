@@ -41,13 +41,7 @@ public class User {
     return users.get( "nm" );
   }
 
-  /* friend
-   * Given a String, f, this method will friend the user with that name. The
-   * method returns the User that was friended. Friending adds the friendship to
-   * adj and to the other user's adj. Friending a user that is already a friend
-   * does not change the friendship.
-   *
-   */
+
   public User friend( String f ) {
     User u = users.get( f );
     adj.put( u.name, u );
